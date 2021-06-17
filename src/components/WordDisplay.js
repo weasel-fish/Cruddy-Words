@@ -1,6 +1,19 @@
-function WordDisplay() {
+function WordDisplay({ currentWord }) {
+
+    console.log(currentWord)
+
+    const {word, definition, partOfSpeech, synonyms} = currentWord
+    console.log(word)
+
     return (
-        <div></div>
+        <div>
+            <h3>{word}</h3>
+            <p>Part of Speech: {partOfSpeech}</p>
+            <p>Definition: {definition}</p>
+            <ul>Synonyms:
+                {synonyms.map(syn => <li key={syn}>{syn}</li>)}
+            </ul>
+        </div>
     )
 }
 

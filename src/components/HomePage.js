@@ -1,6 +1,8 @@
+import userEvent from "@testing-library/user-event"
 import { useEffect, useState } from "react"
+import { useRouteMatch } from "react-router-dom"
 
-function HomePage({myKey}) {
+function HomePage({myKey, user}) {
 
     const [dayWord, setDayWord] = useState({
         word: "",
@@ -38,6 +40,7 @@ function HomePage({myKey}) {
     return (
         <div>
             <h1>Cruddy Words</h1>
+            {user !== "" ? <h2>Welcome {user.name}!</h2> : null}
             <h3>Word of the Day:</h3>
             <p>{dayWord.word}</p>
             <p>Part Of Speech: {dayWord.partOfSpeech}</p>

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import WordDisplay from "./WordDisplay"
 
 function Search({ourWords, myKey}) {
     const [searchTerm, setSearchTerm] = useState('')
@@ -8,8 +9,9 @@ function Search({ourWords, myKey}) {
         partOfSpeech: "",
         synonyms: []
     })
+    const [display, setDisplay] = useState(false)
     
-    console.log(currentWord)
+    //console.log(currentWord)
 
     function handleChange(e) {
         setSearchTerm(e.target.value)
@@ -27,6 +29,7 @@ function Search({ourWords, myKey}) {
                 partOfSpeech: word.partOfSpeech,
                 synonyms: word.synonyms
             })
+            setDisplay(true)
         } else {
             fetch(`https://wordsapiv1.p.rapidapi.com/words/${searchTerm.toLowerCase()}`, {
                 method: "GET",
@@ -43,6 +46,7 @@ function Search({ourWords, myKey}) {
                     partOfSpeech: data.hasOwnProperty("results") ? data.results[0].partOfSpeech : "what do you think it is???",
                     synonyms: data.hasOwnProperty("results") ? data.results[0].synonyms : "what do you think they are???"
                 })
+                setDisplay(true)
             })
         }
     }
@@ -57,6 +61,7 @@ function Search({ourWords, myKey}) {
                 <input onChange={handleChange} value = {searchTerm} type='text' name='search' placeholder='Type here'></input>
                 <input type='submit'></input>
             </form>
+            {display ? <WordDisplay currentWord={currentWord}/> : null}
         </div>
     )
 }
