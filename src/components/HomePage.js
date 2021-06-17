@@ -1,8 +1,17 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 function HomePage() {
-    const myKey='your key here'
+    const myKey="key goes here"
+
+    const [dayWord, setDayWord] = useState({
+        word: "",
+        definition: "",
+        partOfSpeech: "",
+        synonyms: []
+    })
     
+    console.log(dayWord)
+
     useEffect(() => {
 
         fetch('https://wordsapiv1.p.rapidapi.com/words/?random=true',
@@ -14,7 +23,15 @@ function HomePage() {
                 }
             })
             .then(resp => resp.json())
-            .then(console.log)
+            .then(data => {
+                console.log(data)
+                setDayWord({
+                    word: data.word,
+                    definition: data.hasOwnProperty("results") ? data.results[0].definition : "what do you think it means???",
+                    partOfSpeech: data.hasOwnProperty("results") ? data.results[0].partOfSpeech : "what do you think it is???",
+                    synonyms: data.hasOwnProperty("results") ? data.results[0].synonyms : "what do you think they are???"
+                })
+            })
 
     }, [])
     
@@ -23,7 +40,11 @@ function HomePage() {
         <div>
             <h1>Cruddy Words</h1>
             <h3>Word of the Day:</h3>
-            <p>word: is a word</p>
+            <p>{dayWord.word}</p>
+            <p>Part Of Speech: {dayWord.partOfSpeech}</p>
+            <p>Definition: {dayWord.definition}</p>
+            
+
         </div>
     )
 }
