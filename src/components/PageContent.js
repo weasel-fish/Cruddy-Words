@@ -6,7 +6,7 @@ function PageContent() {
     return (
         <div>
         <NavBar />
-        <Route exact path='/random' component ={HomePage} />
+        <Route exact path='/' component ={HomePage} />
         </div>
     )
 }
