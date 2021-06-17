@@ -8,7 +8,7 @@ import {Switch, Route, useHistory} from 'react-router-dom'
 import { useEffect, useState } from "react"
 
 function PageContent() {
-    const myKey=""
+    const myKey="key goes here"
     const [ourWords, setOurWords] = useState([])
     const [userList, setUserList] = useState([])
     const [user, setUser] = useState("")
@@ -42,15 +42,19 @@ function PageContent() {
         setUser('')
     }
 
+    function handleSubmit(object){
+        console.log(object)
+    }
+
     return (
         <div>
             <NavBar user={user} handleLogout={handleLogout}/>
             <Switch>
-                <Route exact path='/' component ={() => <HomePage myKey={myKey} user={user}/>} />
-                <Route exact path='/search' component ={() => <Search ourWords={ourWords} myKey={myKey}/>} />
-                <Route exact path='/addword' component ={() => <AddWord />} />
-                <Route exact path='/mywords' component ={() => <MyWords usersWords={usersWords}/>} />
-                <Route exact path='/login' component ={() => <Login userList={userList} handleLogin={handleLogin}/>} />
+                <Route exact path='/' component ={() => <HomePage myKey={myKey} user={user} handleSubmit={handleSubmit}/>} />
+                <Route exact path='/search' component ={() => <Search ourWords={ourWords} myKey={myKey} user={user} handleSubmit={handleSubmit}/>} />
+                <Route exact path='/addword' component ={() => <AddWord user={user} handleSubmit={handleSubmit}/>} />
+                <Route exact path='/mywords' component ={() => <MyWords usersWords={usersWords} user={user}/>} />
+                <Route exact path='/login' component ={() => <Login userList={userList} handleLogin={handleLogin} user={user}/>} />
             </Switch>
         </div>
     )

@@ -1,11 +1,12 @@
 import { useState } from "react"
 import ModifyWord from "./ModifyWord"
 
-function WordDisplay({ currentWord }) {
+function WordDisplay({ currentWord, user, handleSubmit }) {
     const [modify, setModify] = useState(false)
     const {word, definition, partOfSpeech, synonyms} = currentWord
 
-    console.log(currentWord)
+    console.log(user)
+
     function handleClick() {
         setModify(true)
     }
@@ -18,7 +19,7 @@ function WordDisplay({ currentWord }) {
             <ul>Synonyms: 
                 {typeof synonyms !== 'string' ? synonyms.map(syn => <li key={syn}>{syn}</li>) : <p>{synonyms}</p>}
             </ul>
-            {modify ? <ModifyWord /> : <button onClick={handleClick}>Modify This Word!</button>}
+            {user === "" ? null : modify ? <ModifyWord currentWord={currentWord} user={user} handleSubmit={handleSubmit}/> : <button onClick={handleClick}>Modify This Word!</button>}
         </div>
     )
 }
