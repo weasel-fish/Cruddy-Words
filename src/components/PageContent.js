@@ -8,7 +8,7 @@ import {Switch, Route, useHistory} from 'react-router-dom'
 import { useEffect, useState } from "react"
 
 function PageContent() {
-    const myKey="fc1a03ac36msh4f314f862474c89p19766fjsnaeff9b4490be"
+    const myKey=""
     const [ourWords, setOurWords] = useState([])
     const [userList, setUserList] = useState([])
     const [user, setUser] = useState("")
