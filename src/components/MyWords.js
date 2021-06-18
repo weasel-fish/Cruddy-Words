@@ -1,7 +1,7 @@
 import { useState } from "react"
 import WordDisplay from "./WordDisplay"
 
-function MyWords({usersWords, handleSubmit, handleLike}) {
+function MyWords({usersWords, handleSubmit}) {
     const [currentWord, setCurrentWord] = useState('')
     const favorited = usersWords.filter(word => word.favorited)
     const ownWords = usersWords.filter(word => word.modified || word.created)
@@ -12,7 +12,7 @@ function MyWords({usersWords, handleSubmit, handleLike}) {
 
     return (
         <div>
-            {currentWord !== '' ? <WordDisplay currentWord={currentWord} handleSubmit={handleSubmit} handleLike={handleLike}/> : null}
+            {currentWord !== '' ? <WordDisplay currentWord={currentWord} handleSubmit={handleSubmit}/> : null}
             <div>
                 <h1>Own Words</h1>
                 <ul>

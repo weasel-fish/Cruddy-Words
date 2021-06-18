@@ -45,11 +45,23 @@ function Search({ourWords, myKey, user, handleSubmit, handleLike}) {
                 })
             .then(resp => resp.json())
             .then(data => {
+                console.log(data)
+                let useDef
+                if (data.hasOwnProperty("results")){
+                    if (data.results.length > 1){
+                        let randomIndex = Math.floor(Math.random() * data.results.length ) -1
+                        useDef = data.results[randomIndex].definition
+                    } else {
+                        useDef = data.results[0].definition
+                    }
+                } else {
+                    useDef = "what do you think it means???"
+                }
                 setCurrentWord({
                     word: data.word,
-                    definition: data.hasOwnProperty("results") ? data.results[0].definition : "what do you think it means???",
+                    definition: useDef,
                     partOfSpeech: data.hasOwnProperty("results") ? data.results[0].partOfSpeech : "what do you think it is???",
-                    synonyms: data.hasOwnProperty("results") ? data.results[0].synonyms : "what do you think they are???"
+                    synonyms: (data.hasOwnProperty("results") && typeof data.results[0].synonyms !== 'undefined') ? data.results[0].synonyms : ["what do you think they are???"]
                 })
                 setDisplay(true)
             })

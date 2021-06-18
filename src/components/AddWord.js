@@ -29,7 +29,7 @@ function AddWord({handleSubmit}) {
                 <input type="text" name="partOfSpeech" value={formData.partOfSpeech} onChange={handleChange}/><br></br>
                 <label>Definition:</label>
                 <input type="text" name="definition" value={formData.definition} onChange={handleChange}/><br></br>
-                <label>Synonyms:</label>
+                <label>Synonyms (comma-separated):</label>
                 <input type="text" name="synonyms" value={formData.synonyms} onChange={handleChange}/><br></br>
                 <input type="submit" value="Add Word"/>
             </form>

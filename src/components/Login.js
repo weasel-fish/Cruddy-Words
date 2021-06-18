@@ -10,8 +10,8 @@ function Login( {userList, handleLogin, handleNewUser} ) {
     return (
         <div>
             <h1>LOGIN:</h1>
-            <select id="user" name="user" onChange={handleLogin}>
-                <option value="" disabled selected>Select here</option>
+            <select id="user" name="user" onChange={handleLogin} defaultValue="default">
+                <option value="default" disabled>Select here</option>
                 {userList.map(user => <option value={user.id} key={user.id}>{user.name}</option>)}
             </select>
             <h1>Create New User:</h1>

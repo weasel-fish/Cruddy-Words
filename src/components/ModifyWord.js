@@ -1,8 +1,6 @@
 import { useState } from "react"
 
 function ModifyWord({ currentWord, user, handleSubmit }) {
-    const {id, word, definition, partOfSpeech, synonyms} = currentWord
-
     const [formData, setFormData] = useState({...currentWord})
 
     function handleChange(e) {
@@ -26,7 +24,7 @@ function ModifyWord({ currentWord, user, handleSubmit }) {
                 <input type="text" name="partOfSpeech" value={formData.partOfSpeech} onChange={handleChange}/><br></br>
                 <label>Definition:</label>
                 <input type="text" name="definition" value={formData.definition} onChange={handleChange}/><br></br>
-                <label>Synonyms:</label>
+                <label>Synonyms (comma-separated):</label>
                 <input type="text" name="synonyms" value={formData.synonyms} onChange={handleChange}/><br></br>
                 <input type="submit" value="Modify Word"/>
             </form>

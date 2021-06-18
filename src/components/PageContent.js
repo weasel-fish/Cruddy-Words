@@ -62,11 +62,17 @@ function PageContent() {
 
     function handleSubmit(object, type){
 
+        if (typeof object.synonyms === 'string') {
+            let newsyn = object.synonyms.split(',')
+            object.synonyms = newsyn
+        }        
+
         if(object.userAssc === user.id) {
             const newObj = {...object}
 
             if(type === 'favorited') {
-                newObj.favorited = true
+                let liked = newObj.favorited
+                newObj.favorited = !liked
             }
 
             fetch(`http://localhost:4000/words/${object.id}`, {
@@ -114,18 +120,15 @@ function PageContent() {
         }
     }
 
-    function handleLike() {
-        console.log('I am useless')
-    }
 
     return (
         <div>
             <NavBar user={user} handleLogout={handleLogout}/>
             <Switch>
-                <Route exact path='/' component ={() => <HomePage myKey={myKey} user={user} handleSubmit={handleSubmit} handleLike={handleLike}/>} />
-                <Route exact path='/search' component ={() => <Search ourWords={ourWords} myKey={myKey} user={user} handleSubmit={handleSubmit} handleLike={handleLike}/>} />
-                <Route exact path='/addword' component ={() => <AddWord user={user} handleSubmit={handleSubmit} handleLike={handleLike}/>} />
-                <Route exact path='/mywords' component ={() => <MyWords usersWords={usersWords} user={user} handleSubmit={handleSubmit} handleLike={handleLike}/>} />
+                <Route exact path='/' component ={() => <HomePage myKey={myKey} user={user} handleSubmit={handleSubmit}/>} />
+                <Route exact path='/search' component ={() => <Search ourWords={ourWords} myKey={myKey} user={user} handleSubmit={handleSubmit}/>} />
+                <Route exact path='/addword' component ={() => <AddWord user={user} handleSubmit={handleSubmit}/>} />
+                <Route exact path='/mywords' component ={() => <MyWords usersWords={usersWords} user={user} handleSubmit={handleSubmit}/>} />
                 <Route exact path='/login' component ={() => <Login userList={userList} handleLogin={handleLogin} user={user} handleNewUser={handleNewUser}/>} />
             </Switch>
         </div>
