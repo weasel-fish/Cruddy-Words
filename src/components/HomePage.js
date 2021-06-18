@@ -45,7 +45,7 @@ function HomePage({myKey, user, handleSubmit}) {
 
     return (
         <div>
-            <h1>CRUDdy Words</h1>
+            <h1 id="title">CRUDdy Words</h1>
             {user !== "" ? <h2>Welcome {user.name}!</h2> : null}
             <h3>Word of the Day:</h3>
             <WordDisplay currentWord={dayWord} user={user} handleSubmit={handleSubmit}/>
