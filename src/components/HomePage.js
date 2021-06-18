@@ -8,6 +8,7 @@ const HomeStyling = styled.div`
     h2 {
         text-align: center;
         font-weight: bold;
+        font-family: 'Walter Turncoat', cursive;
     }
 `
 
@@ -20,7 +21,6 @@ function HomePage({myKey, user, handleSubmit}) {
     })
 
     useEffect(() => {
-        console.log('I triggered!')
         fetch('https://wordsapiv1.p.rapidapi.com/words/?random=true',
             {
 	        method: "GET",
@@ -33,22 +33,36 @@ function HomePage({myKey, user, handleSubmit}) {
             .then(data => {
                 console.log(data)
                 let useDef
+                let usePart
+                let useSyn
                 if (data.hasOwnProperty("results")){
                     if (data.results.length > 1){
-                        let randomIndex = Math.floor((Math.random() * data.results.length) - 1)
-                        console.log(randomIndex)
+                        let randomIndex = Math.floor(Math.random() * data.results.length )
                         useDef = data.results[randomIndex].definition
+                        usePart = data.results[randomIndex].partOfSpeech
+                        if (data.results[randomIndex].hasOwnProperty("synonyms")) {
+                            useSyn = data.results[randomIndex].synonyms
+                        } else {
+                            useSyn = ["what do YOU think they are???"]
+                        }
                     } else {
                         useDef = data.results[0].definition
+                        usePart = data.results[0].partOfSpeech
+                        if (typeof data.results[0].synonyms !== 'undefined' && data.results[0].hasOwnProperty("synonyms")) {
+                            useSyn = data.results[0].synonyms
+                        }
                     }
                 } else {
                     useDef = "what do YOU think it means???"
+                    usePart = "what part of speech do YOU think it is???"
+                    useSyn = ["what do YOU think they are???"]
                 }
                 setDayWord({
                     word: data.word,
                     definition: useDef,
-                    partOfSpeech: data.hasOwnProperty("results") ? data.results[0].partOfSpeech : "what part of speech do YOU think it is???",
-                    synonyms: (data.hasOwnProperty("results") && typeof data.results[0].synonyms !== 'undefined') ? data.results[0].synonyms : ["what do YOU think they are???"]
+                    partOfSpeech: usePart,
+                    synonyms: useSyn
+                    // (data.hasOwnProperty("results") && typeof data.results[0].synonyms !== 'undefined') ? data.results[0].synonyms : ["what do YOU think they are???"]
                 })
             })
     }, [])

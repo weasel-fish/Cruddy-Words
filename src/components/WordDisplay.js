@@ -3,6 +3,8 @@ import ModifyWord from "./ModifyWord"
 import styled from "styled-components"
 
 const WordStyle = styled.div`
+    font-family: 'Lato', sans-serif;
+
     button {
         background-color: lightgray;
         color: black;
@@ -29,11 +31,10 @@ const WordStyle = styled.div`
 
     ul {
         list-style-type: circle;
-        padding-left: 80px;
     }
 `
 
-function WordDisplay({ currentWord, user, handleSubmit }) {
+function WordDisplay({ setCurrentWord, currentWord, user, handleSubmit }) {
     const [modify, setModify] = useState(false)
     const {word, definition, partOfSpeech, synonyms} = currentWord
 
@@ -53,7 +54,7 @@ function WordDisplay({ currentWord, user, handleSubmit }) {
             <p>Synonyms:</p>
             <ul> {synonyms.map(syn => <li key={syn}>{syn}</li>)}</ul>
             <div className='displayButtons'>
-                {user === "" ? null : modify ? <ModifyWord currentWord={currentWord} user={user} handleSubmit={handleSubmit}/> : <button onClick={handleClick}>Modify This Word!</button>}
+                {user === "" ? null : modify ? <ModifyWord setModify={setModify} setCurrentWord={setCurrentWord} currentWord={currentWord} user={user} handleSubmit={handleSubmit}/> : <button onClick={handleClick}>Modify This Word!</button>}
                 {user === '' ? null : <button onClick={() => handleSubmit(currentWord, 'favorited')}>{currentWord.favorited ? "UNLIKE" : "LIKE"}</button>}
             </div>
         </WordStyle>

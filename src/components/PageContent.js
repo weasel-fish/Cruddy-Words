@@ -84,11 +84,12 @@ function PageContent() {
             })
             .then(resp => resp.json())
             .then((data) => {
-                history.push('/mywords')
+                // history.push('/mywords')
                 const indx = ourWords.findIndex(word => word.id === data.id)
                 const newArray = [...ourWords]
                 newArray.splice(indx, 1, data)
                 setOurWords(newArray)
+                history.push('/mywords')
             })
         } else {
             const newObj = {

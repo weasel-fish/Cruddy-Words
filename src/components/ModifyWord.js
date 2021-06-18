@@ -5,8 +5,9 @@ const ModifyStyle = styled.div`
     border: 2px solid darkgray;
     padding: 10px;
     border-radius: 5px;
-    font-size: .8em;
+    font-size: 16px;
     padding-bottom: 50px;
+    text-align: left;
 
     label {
         padding-right: 10px;
@@ -19,6 +20,8 @@ const ModifyStyle = styled.div`
         box-sizing: border-box;
         border: 2px solid darkgray;
         border-radius: 5px;
+        min-width: 200px;
+
     }
 
     .modButton {
@@ -26,7 +29,6 @@ const ModifyStyle = styled.div`
         color: black;
         border: 2px solid white;
         padding: 8px 16px;
-        text-align: center;
         text-decoration: none;
         font-size: 16px;
         margin: 4px 2px;
@@ -43,7 +45,7 @@ const ModifyStyle = styled.div`
     }
 `
 
-function ModifyWord({ currentWord, user, handleSubmit }) {
+function ModifyWord({ setCurrentWord, currentWord, user, handleSubmit, setModify }) {
     const [formData, setFormData] = useState({...currentWord})
 
     function handleChange(e) {
@@ -59,6 +61,8 @@ function ModifyWord({ currentWord, user, handleSubmit }) {
         <ModifyStyle>
             <form onSubmit={(e) => {
                 e.preventDefault()
+                setModify(false)
+                setCurrentWord(formData)
                 handleSubmit(formData, 'modified')}
             }>
                 <label>Word:</label>

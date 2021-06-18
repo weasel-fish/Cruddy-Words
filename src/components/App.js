@@ -32,6 +32,7 @@ const GlobalStyle = createGlobalStyle`
   }
   #navbar .login {
     color: black;
+    font-family: 'Lato', sans-serif;
     border: 2px solid #e7e7e7;
     padding: 16px 32px;
     text-align: center;

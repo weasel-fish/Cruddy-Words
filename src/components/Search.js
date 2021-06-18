@@ -3,9 +3,11 @@ import WordDisplay from "./WordDisplay"
 import styled from "styled-components"
 
 const SearchStyle = styled.div`
-    text-align: center;
-    font-family: 'Walter Turncoat', cursive;
 
+    h1 {
+        text-align: center;
+        font-family: 'Walter Turncoat', cursive;
+    }
     .searchHere {
         width: 100%;
         font-family: 'Lato', sans-serif;
@@ -41,9 +43,17 @@ const SearchStyle = styled.div`
         color: white;
         }
     }
-    form {
+    .searchForm {
         text-align: center;
+    }
 
+    .resultBox {
+        display: flex;
+        justify-content: center;
+    }
+    .resultItem {
+        width: 50%;
+        text-align: left;
     }
 `
 
@@ -93,21 +103,39 @@ function Search({ourWords, myKey, user, handleSubmit, handleLike}) {
             .then(data => {
                 console.log(data)
                 let useDef
+                let usePart
+                let useSyn
                 if (data.hasOwnProperty("results")){
                     if (data.results.length > 1){
-                        let randomIndex = Math.floor(Math.random() * data.results.length ) -1
+                        let randomIndex = Math.floor(Math.random() * data.results.length )
                         useDef = data.results[randomIndex].definition
+                        usePart = data.results[randomIndex].partOfSpeech
+                        if (data.results[randomIndex].hasOwnProperty("synonyms")) {
+                            useSyn = data.results[randomIndex].synonyms
+                        } else {
+                            useSyn = ["what do YOU think they are???"]
+                        }
                     } else {
                         useDef = data.results[0].definition
+                        usePart = data.results[0].partOfSpeech
+                        if (typeof data.results[0].synonyms !== 'undefined' && data.results[0].hasOwnProperty("synonyms")) {
+                            useSyn = data.results[0].synonyms
+                        } else {
+                            useSyn = ["what do YOU think they are???"]
+                        }
                     }
                 } else {
                     useDef = "what do YOU think it means???"
+                    usePart = "what part of speech do YOU think it is???"
+                    useSyn = ["what do YOU think they are???"]
                 }
+                
+                console.log(useSyn)
                 setCurrentWord({
                     word: data.word,
                     definition: useDef,
-                    partOfSpeech: data.hasOwnProperty("results") ? data.results[0].partOfSpeech : "what part of speech do YOU think it is???",
-                    synonyms: (data.hasOwnProperty("results") && typeof data.results[0].synonyms !== 'undefined') ? data.results[0].synonyms : ["what do YOU think they are???"]
+                    partOfSpeech: usePart,
+                    synonyms: useSyn
                 })
                 setDisplay(true)
             })
@@ -117,14 +145,18 @@ function Search({ourWords, myKey, user, handleSubmit, handleLike}) {
     return (
         <SearchStyle>
             <h1>Look up a word!</h1>
-            <form onSubmit={(e) => {
+            <form className="searchForm" onSubmit={(e) => {
                 e.preventDefault()
                 handleSearch()
             }}>
                 <input className="searchHere" onChange={handleChange} value = {searchTerm} type='text' name='search' placeholder='Type here'></input>
                 <input className="submitSearch" type='submit'></input>
             </form>
-            {display ? <WordDisplay currentWord={currentWord} user={user} handleSubmit={handleSubmit} handleLike={handleLike}/> : null}
+            <div className="resultBox">
+                <div className="resultItem">
+                    {display ? <WordDisplay currentWord={currentWord} user={user} handleSubmit={handleSubmit} handleLike={handleLike}/> : null}
+                </div>
+            </div>
         </SearchStyle>
     )
 }
