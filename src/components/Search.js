@@ -1,5 +1,51 @@
 import { useState } from "react"
 import WordDisplay from "./WordDisplay"
+import styled from "styled-components"
+
+const SearchStyle = styled.div`
+    text-align: center;
+    font-family: 'Walter Turncoat', cursive;
+
+    .searchHere {
+        width: 100%;
+        font-family: 'Lato', sans-serif;
+        min-width: 15ch;
+        max-width: 20ch;
+        border: 1px solid darkgrey;
+        border-radius: 0.25em;
+        padding: 0.25em 0.5em;
+        font-size: 1.25rem;
+        margin: 5px;
+        line-height: 1.3;
+        background-color: #fff;
+        background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+        vertical-align: middle;
+    }
+    .submitSearch {
+        background-color: lightgray;
+        color: black;
+        border: 2px solid white;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 5px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        display: inline-block;
+        border-radius: 8px;
+        vertical-align: middle;
+
+        &:hover {
+        background-color: grey;
+        color: white;
+        }
+    }
+    form {
+        text-align: center;
+
+    }
+`
 
 function Search({ourWords, myKey, user, handleSubmit, handleLike}) {
     const [searchTerm, setSearchTerm] = useState('')
@@ -69,17 +115,17 @@ function Search({ourWords, myKey, user, handleSubmit, handleLike}) {
     }
 
     return (
-        <div>
+        <SearchStyle>
             <h1>Look up a word!</h1>
             <form onSubmit={(e) => {
                 e.preventDefault()
                 handleSearch()
             }}>
-                <input onChange={handleChange} value = {searchTerm} type='text' name='search' placeholder='Type here'></input>
-                <input type='submit'></input>
+                <input className="searchHere" onChange={handleChange} value = {searchTerm} type='text' name='search' placeholder='Type here'></input>
+                <input className="submitSearch" type='submit'></input>
             </form>
             {display ? <WordDisplay currentWord={currentWord} user={user} handleSubmit={handleSubmit} handleLike={handleLike}/> : null}
-        </div>
+        </SearchStyle>
     )
 }
 
