@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 
-function HomePage() {
-    const myKey="key goes here"
+function HomePage({myKey}) {
 
     const [dayWord, setDayWord] = useState({
         word: "",
@@ -43,7 +42,7 @@ function HomePage() {
             <p>{dayWord.word}</p>
             <p>Part Of Speech: {dayWord.partOfSpeech}</p>
             <p>Definition: {dayWord.definition}</p>
-            
+            <p>This is our website and this is what it does BLAH BLAH BLAH</p>
 
         </div>
     )
