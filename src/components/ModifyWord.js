@@ -2,7 +2,6 @@ import { useState } from "react"
 
 function ModifyWord({ currentWord, user, handleSubmit }) {
     const {id, word, definition, partOfSpeech, synonyms} = currentWord
-    console.log(user)
 
     const [formData, setFormData] = useState({...currentWord})
 
@@ -19,7 +18,7 @@ function ModifyWord({ currentWord, user, handleSubmit }) {
         <div>
             <form onSubmit={(e) => {
                 e.preventDefault()
-                handleSubmit(formData)}
+                handleSubmit(formData, 'modified')}
             }>
                 <label>Word:</label>
                 <input type="text" name="word" value={formData.word} onChange={handleChange}/><br></br>

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import WordDisplay from "./WordDisplay"
 
-function Search({ourWords, myKey, user, handleSubmit}) {
+function Search({ourWords, myKey, user, handleSubmit, handleLike}) {
     const [searchTerm, setSearchTerm] = useState('')
     const [currentWord, setCurrentWord] = useState({
         word: "",
@@ -17,12 +17,18 @@ function Search({ourWords, myKey, user, handleSubmit}) {
 
     function handleSearch() {
         
-        const searchArray = ourWords.filter(word => word.word.toLowerCase() === searchTerm.toLowerCase())
-       
+        let searchArray = ourWords.filter(word => word.word.toLowerCase() === searchTerm.toLowerCase())
+        
+        if(user !== '') {
+            searchArray = searchArray.filter(word => word.userAssc === user.id)
+        }
+
         if(searchArray.length > 0) {
             const word = searchArray[0]
+            console.log(searchArray)
             setCurrentWord({
                 id: word.id,
+                userAssc: word.userAssc,
                 word: word.word,
                 definition: word.definition,
                 partOfSpeech: word.partOfSpeech,
@@ -60,7 +66,7 @@ function Search({ourWords, myKey, user, handleSubmit}) {
                 <input onChange={handleChange} value = {searchTerm} type='text' name='search' placeholder='Type here'></input>
                 <input type='submit'></input>
             </form>
-            {display ? <WordDisplay currentWord={currentWord} user={user} handleSubmit={handleSubmit}/> : null}
+            {display ? <WordDisplay currentWord={currentWord} user={user} handleSubmit={handleSubmit} handleLike={handleLike}/> : null}
         </div>
     )
 }

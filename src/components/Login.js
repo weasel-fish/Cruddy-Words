@@ -1,4 +1,11 @@
-function Login( {userList, handleLogin} ) {
+import { useState } from "react"
+
+function Login( {userList, handleLogin, handleNewUser} ) {
+    const [userInput, setUserInput] = useState('')
+
+    function handleChange(e) {
+        setUserInput(e.target.value)
+    }
 
     return (
         <div>
@@ -8,8 +15,11 @@ function Login( {userList, handleLogin} ) {
                 {userList.map(user => <option value={user.id} key={user.id}>{user.name}</option>)}
             </select>
             <h1>Create New User:</h1>
-            <form>
-                <input type="text" placeholder="Your name here..."></input>
+            <form onSubmit={(e) => {
+                e.preventDefault()
+                handleNewUser(userInput)
+                }}>
+                <input onChange={handleChange} type="text" placeholder="Your name here..." value={userInput}></input>
                 <input type="submit" value="Submit"></input>
             </form>
             

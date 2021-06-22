@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { useRouteMatch } from "react-router-dom"
 import WordDisplay from "./WordDisplay"
 
-function HomePage({myKey, user, handleSubmit}) {
+function HomePage({myKey, user, handleSubmit, handleLike}) {
 
     const [dayWord, setDayWord] = useState({
         word: "",
@@ -39,7 +39,7 @@ function HomePage({myKey, user, handleSubmit}) {
             <h1>Cruddy Words</h1>
             {user !== "" ? <h2>Welcome {user.name}!</h2> : null}
             <h3>Word of the Day:</h3>
-            <WordDisplay currentWord={dayWord} user={user} handleSubmit={handleSubmit}/>
+            <WordDisplay currentWord={dayWord} user={user} handleSubmit={handleSubmit} handleLike={handleLike}/>
             <p>This is our website and this is what it does BLAH BLAH BLAH</p>
         </div>
     )
