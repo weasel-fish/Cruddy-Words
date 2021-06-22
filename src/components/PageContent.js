@@ -36,14 +36,20 @@ function PageContent() {
         goHome()
     }
 
+    const usersWords = ourWords.filter(word => word.userAssc === user.id)
+
+    function handleLogout() {
+        setUser('')
+    }
+
     return (
         <div>
-            <NavBar user={user}/>
+            <NavBar user={user} handleLogout={handleLogout}/>
             <Switch>
                 <Route exact path='/' component ={() => <HomePage myKey={myKey} user={user}/>} />
                 <Route exact path='/search' component ={() => <Search ourWords={ourWords} myKey={myKey}/>} />
-                <Route exact path='/addword' component ={AddWord} />
-                <Route exact path='/mywords' component ={MyWords} />
+                <Route exact path='/addword' component ={() => <AddWord />} />
+                <Route exact path='/mywords' component ={() => <MyWords usersWords={usersWords}/>} />
                 <Route exact path='/login' component ={() => <Login userList={userList} handleLogin={handleLogin}/>} />
             </Switch>
         </div>

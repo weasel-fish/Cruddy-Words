@@ -10,8 +10,6 @@ function HomePage({myKey, user}) {
         partOfSpeech: "",
         synonyms: []
     })
-    
-    console.log(dayWord)
 
     useEffect(() => {
 
@@ -25,7 +23,6 @@ function HomePage({myKey, user}) {
             })
             .then(resp => resp.json())
             .then(data => {
-                console.log(data)
                 setDayWord({
                     word: data.word,
                     definition: data.hasOwnProperty("results") ? data.results[0].definition : "what do you think it means???",

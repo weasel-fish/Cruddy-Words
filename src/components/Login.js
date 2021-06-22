@@ -1,7 +1,5 @@
 function Login( {userList, handleLogin} ) {
 
-    console.log(userList)
-
     return (
         <div>
             <h1>LOGIN:</h1>

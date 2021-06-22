@@ -1,9 +1,6 @@
 function WordDisplay({ currentWord }) {
 
-    console.log(currentWord)
-
     const {word, definition, partOfSpeech, synonyms} = currentWord
-    console.log(word)
 
     return (
         <div>
