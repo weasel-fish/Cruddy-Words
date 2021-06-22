@@ -8,7 +8,7 @@ import {Switch, Route, useHistory} from 'react-router-dom'
 import { useEffect, useState } from "react"
 
 function PageContent() {
-    const myKey="62b07bc68fmsh3b4862969946fe1p14cec4jsn545a737df3f6"
+    const myKey=""
     const [ourWords, setOurWords] = useState([])
     const [userList, setUserList] = useState([])
     const [user, setUser] = useState("")
@@ -38,7 +38,7 @@ function PageContent() {
 
     return (
         <div>
-            <NavBar />
+            <NavBar user={user}/>
             <Switch>
                 <Route exact path='/' component ={() => <HomePage myKey={myKey} user={user}/>} />
                 <Route exact path='/search' component ={() => <Search ourWords={ourWords} myKey={myKey}/>} />
