@@ -1,6 +1,8 @@
 function ModifyWord() {
     return (
-        <div></div>
+        <div>
+            Hello!
+        </div>
     )
 }
 
