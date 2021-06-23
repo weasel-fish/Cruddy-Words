@@ -125,11 +125,11 @@ function PageContent() {
         <div>
             <NavBar user={user} handleLogout={handleLogout}/>
             <Switch>
-                <Route exact path='/' component ={() => <HomePage myKey={myKey} user={user} handleSubmit={handleSubmit}/>} />
-                <Route exact path='/search' component ={() => <Search ourWords={ourWords} myKey={myKey} user={user} handleSubmit={handleSubmit}/>} />
-                <Route exact path='/addword' component ={() => <AddWord user={user} handleSubmit={handleSubmit}/>} />
-                <Route exact path='/mywords' component ={() => <MyWords usersWords={usersWords} user={user} handleSubmit={handleSubmit}/>} />
-                <Route exact path='/login' component ={() => <Login userList={userList} handleLogin={handleLogin} user={user} handleNewUser={handleNewUser}/>} />
+                <Route exact path='/' render ={() => <HomePage myKey={myKey} user={user} handleSubmit={handleSubmit}/>} />
+                <Route exact path='/search' render ={() => <Search ourWords={ourWords} myKey={myKey} user={user} handleSubmit={handleSubmit}/>} />
+                <Route exact path='/addword' render ={() => <AddWord user={user} handleSubmit={handleSubmit}/>} />
+                <Route exact path='/mywords' render ={() => <MyWords usersWords={usersWords} user={user} handleSubmit={handleSubmit}/>} />
+                <Route exact path='/login' render ={() => <Login userList={userList} handleLogin={handleLogin} user={user} handleNewUser={handleNewUser}/>} />
             </Switch>
         </div>
     )

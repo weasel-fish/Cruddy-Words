@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import WordDisplay from "./WordDisplay"
 
 function HomePage({myKey, user, handleSubmit}) {
-
     const [dayWord, setDayWord] = useState({
         word: "",
         definition: "",
@@ -42,7 +41,6 @@ function HomePage({myKey, user, handleSubmit}) {
                     synonyms: (data.hasOwnProperty("results") && typeof data.results[0].synonyms !== 'undefined') ? data.results[0].synonyms : ["what do you think they are???"]
                 })
             })
-
     }, [])
 
     return (
