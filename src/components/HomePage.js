@@ -11,7 +11,7 @@ function HomePage({myKey, user, handleSubmit}) {
     })
 
     useEffect(() => {
-
+        console.log('I triggered!')
         fetch('https://wordsapiv1.p.rapidapi.com/words/?random=true',
             {
 	        method: "GET",
@@ -26,7 +26,8 @@ function HomePage({myKey, user, handleSubmit}) {
                 let useDef
                 if (data.hasOwnProperty("results")){
                     if (data.results.length > 1){
-                        let randomIndex = Math.floor(Math.random() * data.results.length ) -1
+                        let randomIndex = Math.floor((Math.random() * data.results.length) - 1)
+                        console.log(randomIndex)
                         useDef = data.results[randomIndex].definition
                     } else {
                         useDef = data.results[0].definition
