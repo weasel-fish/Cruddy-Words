@@ -2,6 +2,10 @@ import PageContent from './PageContent';
 import { createGlobalStyle } from "styled-components"
 
 const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: 'Lato', sans-serif;
+  }
+
   #navbar {
     background-color: #e7e7e7;
     overflow: hidden;
@@ -69,6 +73,25 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Walter Turncoat', cursive;
     font-size: 5em;
     text-align: center;
+  }
+
+  .homeContainer {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .homeBox1 {
+    padding-top: 50px;
+    width: 25%;
+    text-align: center;
+  }
+
+  .homeBox2 h3 {
+    text-align: center;
+  }
+
+  .homeBox2 {
+    width: 45%;
   }
 `;
 

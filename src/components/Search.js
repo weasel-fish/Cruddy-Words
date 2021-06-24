@@ -55,13 +55,13 @@ function Search({ourWords, myKey, user, handleSubmit, handleLike}) {
                         useDef = data.results[0].definition
                     }
                 } else {
-                    useDef = "what do you think it means???"
+                    useDef = "what do YOU think it means???"
                 }
                 setCurrentWord({
                     word: data.word,
                     definition: useDef,
-                    partOfSpeech: data.hasOwnProperty("results") ? data.results[0].partOfSpeech : "what do you think it is???",
-                    synonyms: (data.hasOwnProperty("results") && typeof data.results[0].synonyms !== 'undefined') ? data.results[0].synonyms : ["what do you think they are???"]
+                    partOfSpeech: data.hasOwnProperty("results") ? data.results[0].partOfSpeech : "what part of speech do YOU think it is???",
+                    synonyms: (data.hasOwnProperty("results") && typeof data.results[0].synonyms !== 'undefined') ? data.results[0].synonyms : ["what do YOU think they are???"]
                 })
                 setDisplay(true)
             })

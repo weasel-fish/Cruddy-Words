@@ -1,5 +1,37 @@
 import { useEffect, useState } from "react"
 import ModifyWord from "./ModifyWord"
+import styled from "styled-components"
+
+const WordStyle = styled.div`
+    button {
+        background-color: lightgray;
+        color: black;
+        border: 2px solid white;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        float: left;
+        display: block;
+        border-radius: 8px;
+
+        &:hover {
+        background-color: grey;
+        color: white;
+        }
+    }
+
+    .displayButtons {
+    }
+
+    ul {
+        list-style-type: circle;
+        padding-left: 80px;
+    }
+`
 
 function WordDisplay({ currentWord, user, handleSubmit }) {
     const [modify, setModify] = useState(false)
@@ -14,14 +46,17 @@ function WordDisplay({ currentWord, user, handleSubmit }) {
     }, [currentWord])
 
     return (
-        <div>
-            <h3>{word}</h3>
-            <p>Part of Speech: {partOfSpeech}</p>
-            <p>Definition: {definition}</p>
-            <ul>Synonyms: {synonyms.map(syn => <li key={syn}>{syn}</li>)}</ul>
-            {user === "" ? null : modify ? <ModifyWord currentWord={currentWord} user={user} handleSubmit={handleSubmit}/> : <button onClick={handleClick}>Modify This Word!</button>}
-            {user === '' ? null : <button onClick={() => handleSubmit(currentWord, 'favorited')}>{currentWord.favorited ? "UNLIKE" : "LIKE"}</button>}
-        </div>
+        <WordStyle>
+            <h4>{word}</h4>
+            {/* <p>Definition:</p> */}
+            <p>({partOfSpeech}) <span>&mdash;</span> {definition}</p>
+            <p>Synonyms:</p>
+            <ul> {synonyms.map(syn => <li key={syn}>{syn}</li>)}</ul>
+            <div className='displayButtons'>
+                {user === "" ? null : modify ? <ModifyWord currentWord={currentWord} user={user} handleSubmit={handleSubmit}/> : <button onClick={handleClick}>Modify This Word!</button>}
+                {user === '' ? null : <button onClick={() => handleSubmit(currentWord, 'favorited')}>{currentWord.favorited ? "UNLIKE" : "LIKE"}</button>}
+            </div>
+        </WordStyle>
     )
 }
 

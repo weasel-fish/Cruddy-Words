@@ -1,4 +1,10 @@
 import { useState } from "react"
+import styled from "styled-components"
+
+const LoginStyle = styled.div`
+    text-align: center;
+    font-family: 'Walter Turncoat', cursive;
+`
 
 function Login( {userList, handleLogin, handleNewUser} ) {
     const [userInput, setUserInput] = useState('')
@@ -8,7 +14,7 @@ function Login( {userList, handleLogin, handleNewUser} ) {
     }
 
     return (
-        <div>
+        <LoginStyle>
             <h1>LOGIN:</h1>
             <select id="user" name="user" onChange={handleLogin} defaultValue="default">
                 <option value="default" disabled>Select here</option>
@@ -23,7 +29,7 @@ function Login( {userList, handleLogin, handleNewUser} ) {
                 <input type="submit" value="Submit"></input>
             </form>
             
-        </div>
+        </LoginStyle>
     )
 }
 
