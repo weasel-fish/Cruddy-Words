@@ -50,6 +50,8 @@ function HomePage({myKey, user, handleSubmit}) {
                         usePart = data.results[0].partOfSpeech
                         if (typeof data.results[0].synonyms !== 'undefined' && data.results[0].hasOwnProperty("synonyms")) {
                             useSyn = data.results[0].synonyms
+                        } else {
+                            useSyn = ["what do YOU think they are???"]
                         }
                     }
                 } else {
@@ -74,8 +76,9 @@ function HomePage({myKey, user, handleSubmit}) {
                 {user !== "" ? <h2>Welcome {user.name}!</h2> : null}
                 <div className='homeContainer'>
                     <div className='homeBox1'>
-                        <p>We jokingly named this <strong>CRUDdy Words</strong> as a reference to the CRUD operations we've learned to implement.</p>
-                        <p>We quickly discovered that this API is useless and has ridiculous or missing definitions.</p>
+                        <p><strong>C.R.U.D.</strong> (acronym) <span>&mdash;</span> in computer programming, Create, Read, Update, and Delete are the four basic operations of persistent storage.</p>
+                        <p><strong>Cruddy</strong> (adjective) <span>&mdash;</span> worthless or useless; inferior in quality; lousy</p>
+                        <p>We originally named this <strong>CRUDdy Words</strong> as a reference to CRUD operations. We quickly discovered that this API is useless and has ridiculous or missing definitions.</p>
                         <p>Help make this dictionary better by defining or modifying your own words!</p>
                     </div>
                     <div className='homeBox2'>

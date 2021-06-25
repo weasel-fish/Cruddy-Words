@@ -7,13 +7,14 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #navbar {
-    background-color: #e7e7e7;
+    /* background-color: #e7e7e7; */
+    background-color: #bae4fd66;
     overflow: hidden;
   }
   #navbar .links {
     background-color: white;
     color: black;
-    border: 2px solid #e7e7e7;
+    border: 2px solid #74b2ff;
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
@@ -26,14 +27,14 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 8px;
 
     &:hover {
-      background-color: grey;
+      background-color: #74b2ff;
       color: white;
     }
   }
   #navbar .login {
     color: black;
     font-family: 'Lato', sans-serif;
-    border: 2px solid #e7e7e7;
+    border: 2px solid #74b2ff;
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
@@ -46,7 +47,7 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 8px;    
 
     &:hover {
-      background-color: grey;
+      background-color: #74b2ff;
       color: white;
     }
   }
@@ -83,7 +84,7 @@ const GlobalStyle = createGlobalStyle`
 
   .homeBox1 {
     padding-top: 50px;
-    width: 25%;
+    width: 35%;
     text-align: center;
   }
 

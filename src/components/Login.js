@@ -19,6 +19,7 @@ const LoginStyle = styled.div`
         background-color: #fff;
         background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
     }
+
     .nameHere {
         width: 100%;
         font-family: 'Lato', sans-serif;

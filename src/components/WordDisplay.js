@@ -46,6 +46,15 @@ function WordDisplay({ setCurrentWord, currentWord, user, handleSubmit }) {
         setModify(false)
     }, [currentWord])
 
+    function likeIfThing() {
+        if(window.location.pathname === '/mywords') {
+            handleSubmit(currentWord, 'favorited')
+            setCurrentWord('')
+        } else {
+            handleSubmit(currentWord, 'favorited')
+        }
+    }
+
     return (
         <WordStyle>
             <h4>{word}</h4>
@@ -55,7 +64,8 @@ function WordDisplay({ setCurrentWord, currentWord, user, handleSubmit }) {
             <ul> {synonyms.map(syn => <li key={syn}>{syn}</li>)}</ul>
             <div className='displayButtons'>
                 {user === "" ? null : modify ? <ModifyWord setModify={setModify} setCurrentWord={setCurrentWord} currentWord={currentWord} user={user} handleSubmit={handleSubmit}/> : <button onClick={handleClick}>Modify This Word!</button>}
-                {user === '' ? null : <button onClick={() => handleSubmit(currentWord, 'favorited')}>{currentWord.favorited ? "UNLIKE" : "LIKE"}</button>}
+                {/* {user === '' ? null : <button onClick={() => handleSubmit(currentWord, 'favorited')}>{currentWord.favorited ? "UNLIKE" : "LIKE"}</button>} */}
+                {user === '' ? null : <button onClick={() => likeIfThing()}>{currentWord.favorited ? "UNLIKE" : "LIKE"}</button>}
             </div>
         </WordStyle>
     )

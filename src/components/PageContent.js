@@ -6,6 +6,7 @@ import MyWords from "./MyWords"
 import Login from "./Login"
 import {Switch, Route, useHistory} from 'react-router-dom'
 import { useEffect, useState } from "react"
+import Footer from './Footer'
 
 function PageContent() {
     const myKey=""
@@ -132,6 +133,7 @@ function PageContent() {
                 <Route exact path='/mywords' render ={() => <MyWords usersWords={usersWords} user={user} handleSubmit={handleSubmit}/>} />
                 <Route exact path='/login' render ={() => <Login userList={userList} handleLogin={handleLogin} user={user} handleNewUser={handleNewUser}/>} />
             </Switch>
+            <Footer />
         </div>
     )
 }

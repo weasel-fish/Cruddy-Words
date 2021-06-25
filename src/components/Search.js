@@ -154,7 +154,7 @@ function Search({ourWords, myKey, user, handleSubmit, handleLike}) {
             </form>
             <div className="resultBox">
                 <div className="resultItem">
-                    {display ? <WordDisplay currentWord={currentWord} user={user} handleSubmit={handleSubmit} handleLike={handleLike}/> : null}
+                    {display ? <WordDisplay setCurrentWord={setCurrentWord} currentWord={currentWord} user={user} handleSubmit={handleSubmit} handleLike={handleLike}/> : null}
                 </div>
             </div>
         </SearchStyle>

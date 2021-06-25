@@ -80,7 +80,7 @@ function AddWord({handleSubmit}) {
         <AddStyled>
             <h1>Add a Word!</h1>
             <div className="theContainer">
-                <div class="theForm">
+                <div className="theForm">
                     <form onSubmit={(e) => {
                         e.preventDefault()
                         handleSubmit(formData, 'created')}
